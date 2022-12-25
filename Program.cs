@@ -7,17 +7,32 @@ namespace OOP_Lab_3
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the tic-tac-toe");
-            Console.Write("Enter the username of PLAYER1: ");
-            string first = Console.ReadLine();
-            Console.Write("Enter the username of PLAYER2: ");
-            string second = Console.ReadLine();
-            Console.WriteLine("Who starts with cross? (By default PLAYER1)\n\t1. " + first + "\n\t2. " + second);
-            string whoIsCross = Console.ReadLine();
-            int cross = 1;
-            if (String.Equals(whoIsCross, "2")) cross = 2;
+            Console.Write("Enter the username of PLAYER1, who starts with crosses: ");
+            User first = new User(Console.ReadLine());
+            Console.Write("Enter the username of PLAYER2, who starts with noughts: ");
+            User second = new User(Console.ReadLine());
+            Console.WriteLine("Who starts with cross? (By default PLAYER1)\n\t1. " + first.Name + "\n\t2. " + second.Name);
             do
             {
-
+                Console.WriteLine("Do you wanna play?\n" +
+                    "\t1. YES\n" +
+                    "\t2. Check match history of " + first.Name + "\n" +
+                    "\t3. Check match history of " + second.Name + "\n" +
+                    "\t4. Quit");
+                string reply = Console.ReadLine();
+                if (reply.Equals("1"))
+                {
+                    //play
+                }
+                else if (reply.Equals("2"))
+                {
+                    //show match history of plr1
+                }
+                else if (reply.Equals("3"))
+                {
+                    //show match history of plr2
+                }
+                else break;
             } while (true);
         }
     }

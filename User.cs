@@ -11,7 +11,7 @@ namespace OOP_Lab_3
 
         public int ID { get; }
         public string Name { get; }
-        public ArrayList MatchHistory = new ArrayList();
+        public ArrayList UserHistory = new ArrayList();
 
         public User(string name)
         {
