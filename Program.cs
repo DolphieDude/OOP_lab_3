@@ -11,7 +11,7 @@ namespace OOP_Lab_3
             User first = new User(Console.ReadLine());
             Console.Write("Enter the username of PLAYER2, who starts with noughts: ");
             User second = new User(Console.ReadLine());
-            do
+            while (true)
             {
                 Console.WriteLine("Do you wanna play?\n" +
                     "\t1. YES\n" +
@@ -25,14 +25,14 @@ namespace OOP_Lab_3
                 }
                 else if (reply.Equals("2"))
                 {
-                    //show match history of plr1
+                    first.PrintHistory();
                 }
                 else if (reply.Equals("3"))
                 {
-                    //show match history of plr2
+                    second.PrintHistory();
                 }
                 else break;
-            } while (true);
+            }
         }
     }
 }

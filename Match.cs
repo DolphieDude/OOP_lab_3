@@ -38,12 +38,15 @@ namespace OOP_Lab_3
                 }
             }
             PrintField();
-            if (Winner == null) Console.WriteLine("***TIE!***");
-            else Console.WriteLine("***" +Winner.Name + " WINS!***");
+            if (Winner == null) Console.WriteLine("*****TIE!*****");
+            else Console.WriteLine("*****" +Winner.Name + " WINS!*****");
 
+            first.UserHistory.Add(this);
+            second.UserHistory.Add(this);
             this.First = first;
             this.Second = second;
             MatchCounter++;
+            ID = MatchCounter;
         }
 
         private Boolean NextTurn(User player, int crossOrNought)
