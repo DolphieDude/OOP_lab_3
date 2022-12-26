@@ -4,7 +4,7 @@ namespace OOP_Lab_3
 {
     class Match
     {
-        private static int MatchCounter = 0;
+        private static int MatchCounter { get; set; } = 0;
         
         private const int NO = 0;
         private const int CROSS = 1;

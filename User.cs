@@ -5,12 +5,12 @@ namespace OOP_Lab_3
 {
     class User
     {
-        private static int UserCounter = 0;
-        public static List<User> UserList = new List<User>();
+        private static int UserCounter { get;  set; } = 0;
+        public static List<User> UserList { get; } = new List<User>();
 
         public int ID { get; }
         public string Name { get; }
-        public List<Match> UserHistory = new List<Match>();
+        public List<Match> UserHistory { get; } = new List<Match>();
 
         public User(string name)
         {
