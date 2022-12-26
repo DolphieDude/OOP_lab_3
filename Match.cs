@@ -13,32 +13,44 @@ namespace OOP_Lab_3
         public int ID { get; }
         private User First;
         private User Second;
-        public User Winner { get; }
-        private int[,] Field;
+        public User Winner { get; private set; }
+        private int[,] Field { get; }
 
-        public Match(int first, int second)
+        public Match(User first, User second)
         {
-            if (first == second) throw new ArgumentException("User cannot play against themself");
+            if (first.ID == second.ID) throw new ArgumentException("User cannot play against themself");
             Field = new int[3, 3] {
             {NO, NO, NO},
             {NO, NO, NO},
             {NO, NO, NO}
             };
             int[] move = new int[2];
-            int whoWon;
-            for (int i = 0; i < Field.Length; i++)
-            {   
-                PrintField();
-                Console.WriteLine(User.UserList[first - 1].Name + "'s turn");
-                MakeMove(CROSS);
-                whoWon = WinCheck();
-                if (whoWon != NO) break;
-                PrintField();
-                Console.WriteLine(User.UserList[second - 1].Name + "'s turn");
-                MakeMove(NOUGHT);
-                whoWon = WinCheck();
-                if (whoWon != NO) break;
+            for (int i = 1; i <= Field.Length; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    if (NextTurn(first, CROSS)) break;
+                }
+                else
+                {
+                    if (NextTurn(second, NOUGHT)) break;
+                }
             }
+            PrintField();
+            if (Winner == null) Console.WriteLine("***TIE!***");
+            else Console.WriteLine("***" +Winner.Name + " WINS!***");
+            this.First = first;
+            this.Second = second;
+            MatchCounter++;
+        }
+
+        private Boolean NextTurn(User player, int crossOrNought)
+        {
+            PrintField();
+            Console.WriteLine(player.Name + "'s turn");
+            MakeMove(crossOrNought);
+            if (WinCheck() != NO) Winner = player;
+            return WinCheck() != NO;
         }
 
         private void PrintField()

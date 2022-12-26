@@ -21,7 +21,7 @@ namespace OOP_Lab_3
                 string reply = Console.ReadLine();
                 if (reply.Equals("1"))
                 {
-                    new Match(first.ID, second.ID);
+                    new Match(first, second);
                 }
                 else if (reply.Equals("2"))
                 {

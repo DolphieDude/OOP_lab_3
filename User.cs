@@ -17,8 +17,8 @@ namespace OOP_Lab_3
         public User(string name)
         {
             if (name.Length <= 1) throw new ArgumentException("Username must contain 2 or more characters");
-            UserCounter++;
             ID = UserCounter;
+            UserCounter++;
             this.Name = name;
             UserList.Add(this);
         }
