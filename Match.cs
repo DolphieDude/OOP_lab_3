@@ -1,30 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP_Lab_3
 {
     class Match
     {
         private static int MatchCounter = 0;
+        
         private const int NO = 0;
         private const int CROSS = 1;
         private const int NOUGHT = 2;
+        
         public int ID { get; }
-        private User First;
-        private User Second;
+        public User First { get; }
+        public User Second { get; }
         public User Winner { get; private set; }
         private int[,] Field { get; }
 
         public Match(User first, User second)
         {
             if (first.ID == second.ID) throw new ArgumentException("User cannot play against themself");
+
             Field = new int[3, 3] {
             {NO, NO, NO},
             {NO, NO, NO},
             {NO, NO, NO}
             };
-            int[] move = new int[2];
+
             for (int i = 1; i <= Field.Length; i++)
             {
                 if (i % 2 != 0)
@@ -39,6 +40,7 @@ namespace OOP_Lab_3
             PrintField();
             if (Winner == null) Console.WriteLine("***TIE!***");
             else Console.WriteLine("***" +Winner.Name + " WINS!***");
+
             this.First = first;
             this.Second = second;
             MatchCounter++;
@@ -49,6 +51,7 @@ namespace OOP_Lab_3
             PrintField();
             Console.WriteLine(player.Name + "'s turn");
             MakeMove(crossOrNought);
+
             if (WinCheck() != NO) Winner = player;
             return WinCheck() != NO;
         }
@@ -79,6 +82,7 @@ namespace OOP_Lab_3
         private int[] MakeMove(int crossOrNought)
         {
             int[] result = new int[2];
+
             while (true)
             {
                 Console.Write("\tEnter the row: ");
@@ -116,6 +120,7 @@ namespace OOP_Lab_3
         private int WinCheck()
         {
             int whoWon = NO;
+
             if (Field[0, 0] != NO && Field[0, 0] == Field[1, 1] && Field[0, 0] == Field[2, 2]) whoWon = Field[0, 0];
             else if (Field[0, 2] != NO && Field[0, 2] == Field[1, 1] && Field[0, 2] == Field[2, 0]) whoWon = Field[0, 2];
             for (int i = 0; i < Field.GetLength(0) && whoWon == NO; i++)
@@ -126,6 +131,7 @@ namespace OOP_Lab_3
             {
                 if (Field[0, i] != NO && Field[0, i] == Field[1, i] && Field[0, i] == Field[2, i]) whoWon = Field[0, i];
             }
+
             return whoWon;
         }
     }
