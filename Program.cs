@@ -11,7 +11,6 @@ namespace OOP_Lab_3
             User first = new User(Console.ReadLine());
             Console.Write("Enter the username of PLAYER2, who starts with noughts: ");
             User second = new User(Console.ReadLine());
-            Console.WriteLine("Who starts with cross? (By default PLAYER1)\n\t1. " + first.Name + "\n\t2. " + second.Name);
             do
             {
                 Console.WriteLine("Do you wanna play?\n" +
@@ -22,7 +21,7 @@ namespace OOP_Lab_3
                 string reply = Console.ReadLine();
                 if (reply.Equals("1"))
                 {
-                    //play
+                    new Match(first.ID, second.ID);
                 }
                 else if (reply.Equals("2"))
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace OOP_Lab_3
@@ -7,11 +8,11 @@ namespace OOP_Lab_3
     class User
     {
         private static int UserCounter = 0;
-        public static ArrayList UserList = new ArrayList();
+        public static List<User> UserList = new List<User>();
 
         public int ID { get; }
         public string Name { get; }
-        public ArrayList UserHistory = new ArrayList();
+        public List<Match> UserHistory = new List<Match>();
 
         public User(string name)
         {
