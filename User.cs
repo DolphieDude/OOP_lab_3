@@ -18,7 +18,7 @@ namespace OOP_Lab_3
             ID = UserCounter;
             UserCounter++;
             this.Name = name;
-            UserList.Add(this);
+            UserList.Add(this); 
         }
 
         public void PrintHistory()

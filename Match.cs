@@ -4,7 +4,7 @@ namespace OOP_Lab_3
 {
     class Match
     {
-        private static int MatchCounter { get; set; } = 0;
+        private static int MatchCounter { get; set; } = 0;   
         
         private const int NO = 0;
         private const int CROSS = 1;
@@ -82,7 +82,7 @@ namespace OOP_Lab_3
             }
         }
 
-        private int[] MakeMove(int crossOrNought)
+        private void MakeMove(int crossOrNought)
         {
             int[] result = new int[2];
 
@@ -117,7 +117,6 @@ namespace OOP_Lab_3
             }
 
             Field[result[0], result[1]] = crossOrNought;
-            return result;
         }
 
         private int WinCheck()
