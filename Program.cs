@@ -32,32 +32,28 @@ namespace OOP_Lab_3
                 
                 else if (reply.Equals("3"))
                 {
-                    Console.WriteLine("How many last matches do you want to be shown? (Type \'n\' if you want full history)");
-                    reply = Console.ReadLine();
-                    try
-                    {
-                        first.PrintHistory(Convert.ToInt32(reply));
-                    }
-                    catch
-                    {
-                        first.PrintHistory();
-                    }
+                    HistoryChoose(first);
                 }
                 else if (reply.Equals("4"))
                 {
-                    Console.WriteLine("How many last matches do you want to be shown? (Type \'n\' if you want full history)");
-                    reply = Console.ReadLine();
-                    try
-                    {
-                        second.PrintHistory(Convert.ToInt32(reply));
-                    }
-                    catch
-                    {
-                        second.PrintHistory();
-                    }
+                    HistoryChoose(second);
                 }
                 
                 else break;
+            }
+        }
+
+        public static void HistoryChoose(User player)
+        {
+            Console.WriteLine("How many last matches do you want to be shown? (Type \'n\' if you want full history)");
+            string reply = Console.ReadLine();
+            try
+            {
+                player.PrintHistory(Convert.ToInt32(reply));
+            }
+            catch
+            {
+                player.PrintHistory();
             }
         }
     }
