@@ -4,12 +4,13 @@ using System.Collections.Generic;
 namespace OOP_Lab_3
 {
     class User
-    {
+    {   
         private static int UserCounter { get;  set; } = 0;
         public static List<User> UserList { get; } = new List<User>();
 
         public int ID { get; }
         public string Name { get; }
+        public int Rating { get; set; }
         public List<Match> UserHistory { get; } = new List<Match>();
 
         public User(string name)

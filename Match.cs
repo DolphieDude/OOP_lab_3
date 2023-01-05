@@ -4,22 +4,30 @@ namespace OOP_Lab_3
 {
     class Match
     {
-        private static int MatchCounter { get; set; } = 0;   
+        protected static int MatchCounter { get; set; } = 0;   
         
-        private const int NO = 0;
-        private const int CROSS = 1;
-        private const int NOUGHT = 2;
+        protected const int NO = 0;
+        protected const int CROSS = 1;
+        protected const int NOUGHT = 2;
         
-        public int ID { get; }
-        public User First { get; }
-        public User Second { get; }
-        public User Winner { get; private set; }
-        private int[,] Field { get; }
+        public int ID { get; protected set; }
+        public User First { get; protected set;  }
+        public User Second { get; protected set;  }
+        public User Winner { get; protected set; }
+        protected int[,] Field { get; set; }
+
+        public Match() { }
 
         public Match(User first, User second)
         {
             if (first.ID == second.ID) throw new ArgumentException("User cannot play against themself");
+            this.First = first;
+            this.Second = second;
+            Play();
+        }
 
+        protected void Play()
+        {
             Field = new int[3, 3] {
             {NO, NO, NO},
             {NO, NO, NO},
@@ -30,26 +38,24 @@ namespace OOP_Lab_3
             {
                 if (i % 2 != 0)
                 {
-                    if (NextTurn(first, CROSS)) break;
+                    if (NextTurn(First, CROSS)) break;
                 }
                 else
                 {
-                    if (NextTurn(second, NOUGHT)) break;
+                    if (NextTurn(Second, NOUGHT)) break;
                 }
             }
             PrintField();
             if (Winner == null) Console.WriteLine("*****TIE!*****");
-            else Console.WriteLine("*****" +Winner.Name + " WINS!*****");
+            else Console.WriteLine("*****" + Winner.Name + " WINS!*****");
 
-            first.UserHistory.Add(this);
-            second.UserHistory.Add(this);
-            this.First = first;
-            this.Second = second;
+            First.UserHistory.Add(this);
+            Second.UserHistory.Add(this);
             MatchCounter++;
             ID = MatchCounter;
         }
 
-        private Boolean NextTurn(User player, int crossOrNought)
+        protected Boolean NextTurn(User player, int crossOrNought)
         {
             PrintField();
             Console.WriteLine(player.Name + "'s turn");
@@ -59,7 +65,7 @@ namespace OOP_Lab_3
             return WinCheck() != NO;
         }
 
-        private void PrintField()
+        protected void PrintField()
         {
             for (int i = 0; i < Field.GetLength(0); i++)
             {
@@ -82,7 +88,7 @@ namespace OOP_Lab_3
             }
         }
 
-        private void MakeMove(int crossOrNought)
+        protected void MakeMove(int crossOrNought)
         {
             int[] result = new int[2];
 
@@ -119,7 +125,7 @@ namespace OOP_Lab_3
             Field[result[0], result[1]] = crossOrNought;
         }
 
-        private int WinCheck()
+        protected int WinCheck()
         {
             int whoWon = NO;
 

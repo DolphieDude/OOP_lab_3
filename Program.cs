@@ -11,6 +11,7 @@ namespace OOP_Lab_3
             User first = new User(Console.ReadLine());
             Console.Write("Enter the username of PLAYER2, who starts with noughts: ");
             User second = new User(Console.ReadLine());
+            new RankedMatch(first, second);
             while (true)
             {
                 Console.WriteLine("Do you wanna play?\n" +
