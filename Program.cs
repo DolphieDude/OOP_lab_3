@@ -20,6 +20,7 @@ namespace OOP_Lab_3
                     "\t4. Check match history of " + second.Name + " (current rating: " + second.Rating + ")\n" +
                     "\t5. Quit");
                 string reply = Console.ReadLine();
+                
                 if (reply.Equals("1"))
                 {
                     new Match(first, second);
@@ -28,14 +29,34 @@ namespace OOP_Lab_3
                 {
                     new RankedMatch(first, second);
                 }
+                
                 else if (reply.Equals("3"))
                 {
-                    first.PrintHistory();
+                    Console.WriteLine("How many last matches do you want to be shown? (Type \'n\' if you want full history)");
+                    reply = Console.ReadLine();
+                    try
+                    {
+                        first.PrintHistory(Convert.ToInt32(reply));
+                    }
+                    catch
+                    {
+                        first.PrintHistory();
+                    }
                 }
                 else if (reply.Equals("4"))
                 {
-                    second.PrintHistory();
+                    Console.WriteLine("How many last matches do you want to be shown? (Type \'n\' if you want full history)");
+                    reply = Console.ReadLine();
+                    try
+                    {
+                        second.PrintHistory(Convert.ToInt32(reply));
+                    }
+                    catch
+                    {
+                        second.PrintHistory();
+                    }
                 }
+                
                 else break;
             }
         }
