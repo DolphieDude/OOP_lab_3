@@ -19,6 +19,7 @@ namespace OOP_Lab_3
             ID = UserCounter;
             UserCounter++;
             this.Name = name;
+            Rating = 0;
             UserList.Add(this); 
         }
 
@@ -29,13 +30,29 @@ namespace OOP_Lab_3
             foreach (Match m in UserHistory)
             {
                 Console.Write("Match #" + count + ": ID=" + m.ID + "; Opponent=");
-                if (this != m.First) Console.Write(m.First.Name);
+                if (this.ID != m.First.ID) Console.Write(m.First.Name);
                 else Console.Write(m.Second.Name);
                 Console.Write("; Result=");
-                if (m.Winner == this) Console.WriteLine("WIN;");
+                if (m.Winner.ID == this.ID) Console.WriteLine("WIN;");
                 else if (m.Winner == null) Console.WriteLine("TIE;");
                 else Console.WriteLine("LOSE;");
                 count++;
+            }
+            Console.WriteLine("*****END OF HISTORY*****");
+        }
+
+        public void PrintHistory(int amount)
+        {
+            Console.WriteLine(Name + "'s history of matches. Last " + amount);
+            for (int i = UserHistory.Count - 1; i >= 0 && i >= UserHistory.Count - amount; i--)
+            {
+                Console.Write("Match #" + (i + 1) + ": ID=" + UserHistory[i].ID + "; Opponent=");
+                if (this.ID != UserHistory[i].First.ID) Console.Write(UserHistory[i].First.Name);
+                else Console.Write(UserHistory[i].Second.Name);
+                Console.Write("; Result=");
+                if (UserHistory[i].Winner.ID == this.ID) Console.WriteLine("WIN;");
+                else if (UserHistory[i].Winner == null) Console.WriteLine("TIE;");
+                else Console.WriteLine("LOSE;");
             }
             Console.WriteLine("*****END OF HISTORY*****");
         }

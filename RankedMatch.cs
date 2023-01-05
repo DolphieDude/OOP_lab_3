@@ -14,26 +14,33 @@ namespace OOP_Lab_3
             if (first.ID == second.ID) throw new ArgumentException("User cannot play against themself");
             this.First = first;
             this.Second = second;
-            Console.WriteLine("You will gain" + WIN_RATING_CHANGE + " rating points in case of your win, otherwise you lose " + LOSE_RATING_CHANGE);
+            Console.WriteLine("You will gain " + WIN_RATING_CHANGE + " rating points in case of your win, otherwise you lose " + LOSE_RATING_CHANGE);
             Play();
+
             if (Winner != null)
             {
                 Console.WriteLine(Winner.Name + " gains " + WIN_RATING_CHANGE + " rating points");
-                if (this.First.ID != Winner.ID) Console.Write(First.Name);
-                else Console.Write(this.Second.Name);
-                Console.WriteLine("loses " + LOSE_RATING_CHANGE + " rating points");
+                RatingChange(Winner, WIN_RATING_CHANGE);
+
+                if (this.First.ID != Winner.ID)
+                {
+                    Console.Write(this.First.Name);
+                    RatingChange(this.First, -LOSE_RATING_CHANGE);
+                }
+                else
+                {
+                    Console.Write(this.Second.Name);
+                    RatingChange(this.Second, -LOSE_RATING_CHANGE);
+                }
+                Console.WriteLine(" loses " + LOSE_RATING_CHANGE + " rating points");
             }
             else Console.WriteLine("Your ratings do not change");
         }
 
-        private void RatingChange(User player)
+        private void RatingChange(User player, int change)
         {
-            if (Winner.ID == player.ID) player.Rating += WIN_RATING_CHANGE;
-            else
-            {
-                player.Rating -= LOSE_RATING_CHANGE;
-                if (player.Rating < 0) player.Rating += -(player.Rating);
-            }
+            player.Rating += change;
+            if (player.Rating < 0) player.Rating += -(player.Rating);
         }
     }
 }
