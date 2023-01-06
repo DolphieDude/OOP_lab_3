@@ -38,7 +38,7 @@ namespace OOP_Lab_3
         private void RatingChange(User player, int change)
         {
             player.Rating += change;
-            if (player.Rating < 0) player.Rating += -(player.Rating);
+            if (player.Rating < 0) player.Rating = 0;
         }
     }
 }
